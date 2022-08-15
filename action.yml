@@ -30,6 +30,12 @@ inputs:
       `inngest login`.
     required: true
     default: ""
+  prod:
+    description: |-
+      If true, will deploy to your production workspace. Defaults to false,
+      which will deploy to your test workspace.
+    required: false
+    default: false
 
 branding:
   icon: terminal
@@ -42,5 +48,5 @@ runs:
       with:
         version: ${{ inputs.version }}
         key: ${{ inputs.key }}
-    - run: inngest deploy ${{ inputs.dir }}
+    - run: inngest deploy ${{ inputs.dir }} ${{ inputs.prod && '--prod' }}
       shell: bash

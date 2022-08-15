@@ -13,8 +13,9 @@ steps:
   - uses: actions/checkout@v3
   - uses: inngest/action-deploy-functions@v1
     with:
-      dir: ./functions
       key: ${{ secrets.INNGEST_API_KEY }}
+      dir: ./functions
+      prod: true
 ```
 
 You can also provide a `version` input to specify the version of the Inngest CLI to use. See [inngest/setup-inngest](https://github.com/inngest/setup-inngset) for more info.
