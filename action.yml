@@ -1,0 +1,46 @@
+name: Deploy Inngest Functions
+author: Inngest
+description: |-
+  Installs the Inngest CLI and uses it to deploy any found Inngest functions in
+  the current or given directory.
+
+inputs:
+  version:
+    description: |-
+      Version of the Inngest CLI to install. If unspecified or set to "latest",
+      the latest available Inngset CLI version for the target platform will be
+      installed.
+
+      Example: "latest" or "1.5.2"
+    required: false
+    default: latest
+  dir:
+    description: |-
+      If given, the Inngest CLI will use this relative path from the CWD to
+      recursively find functions.
+
+      If not provided, the current working directory will be used.
+
+      Example: "./functions"
+    required: false
+    default: "."
+  key:
+    description: |-
+      An API key which will be used to authenticate with the Inngest CLI using
+      `inngest login`.
+    required: true
+    default: ""
+
+branding:
+  icon: terminal
+  color: blue
+
+runs:
+  using: composite
+  steps:
+    - uses: inngest/setup-inngest@v1
+      with:
+        version: ${{ inputs.version }}
+        key: ${{ inputs.key }}
+    - run: inngest deploy ${{ inputs.dir }}
+      shell: bash
