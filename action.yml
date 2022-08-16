@@ -24,10 +24,10 @@ inputs:
       Example: "./functions"
     required: false
     default: "."
-  key:
+  token:
     description: |-
-      An API key which will be used to authenticate with the Inngest CLI using
-      `inngest login`.
+      An auth token which will be used to authenticate with the Inngest CLI
+      using `inngest login`.
     required: true
     default: ""
   prod:
@@ -47,6 +47,6 @@ runs:
     - uses: inngest/setup-inngest@v1
       with:
         version: ${{ inputs.version }}
-        key: ${{ inputs.key }}
+        token: ${{ inputs.token }}
     - run: inngest deploy ${{ inputs.dir }} ${{ inputs.prod && '--prod' }}
       shell: bash

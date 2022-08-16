@@ -13,7 +13,7 @@ steps:
   - uses: actions/checkout@v3
   - uses: inngest/action-deploy-functions@v1
     with:
-      key: ${{ secrets.INNGEST_API_KEY }}
+      token: ${{ secrets.INNGEST_AUTH_TOKEN }}
       dir: ./functions
       prod: true
 ```
