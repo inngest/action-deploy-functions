@@ -48,5 +48,6 @@ runs:
       with:
         version: ${{ inputs.version }}
         token: ${{ inputs.token }}
-    - run: inngest deploy ${{ inputs.dir }} ${{ inputs.prod && '--prod' }}
+      # Must use `script -e -c` to pretend we have a TTY.
+    - run: script -e -c "inngest deploy ${{ inputs.dir }} ${{ inputs.prod && '--prod' }}"
       shell: bash
