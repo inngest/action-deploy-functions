@@ -1,0 +1,25 @@
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    name: Deploys Inngest function from ${{ matrix.os }}/${{ matrix.shell }}
+    strategy:
+      matrix:
+        include:
+          - os: ubuntu-latest
+            shell: bash
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v3
+
+      - id: action
+        uses: ./
+        with:
+          token: ${{ secrets.INNGEST_AUTH_TOKEN }}
+          prod: true
+          dir: test_fn
+

@@ -1,0 +1,24 @@
+{
+  "name": "test_fn",
+  "id": "top-mosquito-1c387a",
+  "triggers": [
+    {
+      "event": "test/event.sent",
+      "definition": {
+        "format": "cue",
+        "synced": true,
+        "def": "file://./events/test-event-sent.cue"
+      }
+    }
+  ],
+  "steps": {
+    "step-1": {
+      "id": "step-1",
+      "path": "file://./steps/step-1",
+      "name": "test_fn",
+      "runtime": {
+        "type": "docker"
+      }
+    }
+  }
+}
